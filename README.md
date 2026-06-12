@@ -124,22 +124,19 @@ The database initialization engine builds two specific user accounts out of the 
     * Password String: admin
     * Orders for Profile 1 and Profile 2 should be visible
 
-Things you may want to cover:
+## Screenshots
 
-* Ruby version
+Shopper Catelog:
+![alt text](image-1.png)
 
-* System dependencies
+Product Catelog:
+![alt text](image-2.png)
 
-* Configuration
+My Orders:
+![alt text](image-3.png)
 
-* Database creation
+## Known Limitations
 
-* Database initialization
+* Case Sensitivity Match Scope: Basic SQL ```LIKE``` filtering strings track strict dictionary casing rules depending on the host OS platform environment configuration. Use downstream .downcase converters if testing across mixed character bounds.
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
