@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<ul>
+<% @cart.cartitems.each do |item| %>
+  <li><%= item.product.name%> - <%= item.quantity %> - <%= item.product.price %></li>
+  
+<% end%>
+</ul>
+
+Total Price = <%=@cart.total_price %>

@@ -1,0 +1,40 @@
+<%= form_with(model: [@product, @review]) do |form| %>
+  <% if review.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h2>
+
+      <ul>
+        <% review.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :rating, style: "display: block" %>
+    <%= form.select :rating, [5,4,3,2,1] %>
+  </div>
+
+  <div>
+    <%= form.label :comment, style: "display: block" %>
+    <%= form.textarea :comment, rows: 4 %>
+  </div>
+
+  <%# <div>
+    <%= form.label :user_id, style: "display: block" %>
+    <%# <%= form.text_field :user_id %> 
+  <%# </div> %>
+
+  <%# <div> %>
+    <%# <%= form.label :product_id, style: "display: block" %> 
+    <%# <%= form.text_field :product_id %> 
+  <%# </div> %>
+
+  <div>
+    <%= form.submit "Update Review" %>
+  </div>
+
+<% end %>
+
+<%= link_to "Cancel", product_path(@product) %>

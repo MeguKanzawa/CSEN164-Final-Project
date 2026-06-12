@@ -1,0 +1,50 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @product %>
+
+<div>
+  <%= link_to "Edit this product", edit_product_path(@product) %> |
+  <%= link_to "Back to products", products_path %>
+
+  <%=button_to('Add to Cart', cartitems_path(product_id: @product.id))%>
+  <%= button_to "Destroy this product", @product, method: :delete %>
+
+  <h4>All Reviews</h4>
+  Average Rating: <%= @product.reviews.average(:rating).round(1) %> / 5
+  <% if @product.reviews.any? %>
+    <% @product.reviews.each do |review| %>
+      <p>Rating: <%= review.rating %> / 5
+      <%= review.comment%>
+        By: <%= review.user.email_address%>
+        <% if authenticated? && review.user == Current.user %>
+          <%= link_to "Edit", edit_product_review_path(@product, review)%>
+          <%= link_to "Delete", product_review_path(@product, review), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+        
+      <%end%>
+      </p>
+    <%end%>
+  <% else %>
+    No Reviews yet.
+  <% end %>
+
+  <% if authenticated? %>
+    <h4>Write a Review</h4>
+    <%= form_with(model: [@product, @product.reviews.build]) do |f| %>
+      <div style="margin-bottom: 10px;">
+        <%= f.label :rating %>
+        <%= f.select :rating, [5,4,3,2,1] %>
+      </div>
+      
+      <div style="margin-bottom: 10px;">
+        <%= f.label :comment %><br>
+        <%= f.text_area :comment, rows: 4, style: "width: 100%; max-width: 500px;" %>
+      </div>
+      
+      <%= f.submit "Submit Review"%>
+    <% end %> 
+  <% else %>
+    <p><%= link_to "Log in", new_session_path %> to write a product review.</p>
+  <% end %>
+  
+  
+</div>

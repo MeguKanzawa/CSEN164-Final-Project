@@ -1,0 +1,20 @@
+<%# <h1>Shopper#catalog</h1>
+<p>Find me in app/views/shopper/catalog.html.erb</p> %>
+
+<h1>Shopper Product Catelog</h1>
+
+<% @allproducts.each do |product| %>
+    <div class = "entry">
+        <div class = "shopper-image">
+            <%=image_tag(product.image) %>
+        </div>
+        <div class = "shopper-details">
+            <h2><%=product.name%></h2>
+            <p><%=product.description%></p>
+            <p><strong>$<%=product.price%></strong></p>
+            <%= button_to('Add to Cart', cartitems_path(product_id: product.id))%>
+        </div>
+        
+        
+    </div>
+<%end%> 

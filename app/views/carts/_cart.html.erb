@@ -1,0 +1,30 @@
+<div id="<%= dom_id cart %>">
+    <p style="color: green"><%= notice %></p>
+
+<ul class = "cart">
+<% @cart.cartitems.each do |item| %>
+  <li>
+    <div id = "left">
+      <div><%= item.quantity %>×</div>
+    </div>
+    <div id = "middle">
+      
+      <%= item.product.name%>
+    </div>
+    <div id = "right">
+      <p>$<%= item.product.price %></p>
+    </div>
+    
+  </li>
+  
+<% end%>
+</ul>
+
+
+
+<div id = "total_price">
+  <hr>
+  <p>$<%=@cart.total_price %></p></div>
+</div>
+
+<%=button_to('Check out', new_order_path, method: :get)%>

@@ -1,0 +1,30 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Products" %>
+
+<h1>Product Catelog</h1>
+
+<div id="products">
+
+  <div class="search-section" style="margin: 20px 0px; padding: 15px; background: #f9f9f9; border-radius: 4px; border: 1px solid #e3e3e3;">
+  <%= form_with url: products_path, method: :get, local: true, class: "search-form" do |f| %>
+    <%= f.label :search, "Search Book Inventory:" %><br>
+    <%= f.text_field :search, value: params[:search], placeholder: "Type book title...", style: "padding: 6px; width: 250px; margin-right: 10px;" %>
+    <%= f.submit "Search", class: "btn" %>
+    
+    <% if params[:search].present? %>
+      <%= link_to "Clear Filters", products_path, style: "margin-left: 10px; color: red;" %>
+    <% end %>
+  <% end %>
+</div>
+
+  <% @products.each do |product| %>
+    <%= render product, product: product%>
+    
+  <% end %>
+</div>
+
+<div class = "actions">
+  <%= link_to "New product", new_product_path %>
+</div>
+ 
